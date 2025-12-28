@@ -2249,20 +2249,26 @@ class AlasGUI(Frame):
         self.task_handler.start()
 
         # Announcement check function - fetches from API and pushes to frontend
+        self._last_announcement_id = None
         def check_and_push_announcement():
             try:
+                # Add timestamp to bypass cache
+                timestamp = int(time.time())
                 resp = requests.get(
-                    'https://ep.nekro.ai/e/wess09/alas/api/a1',
+                    f'https://ep.nekro.ai/e/wess09/alas/api/a1?t={timestamp}',
                     timeout=10
                 )
                 if resp.status_code == 200:
                     data = resp.json()
                     if data and data.get('announcementId') and data.get('title') and data.get('content'):
                         announcement_id = data['announcementId']
-                        title_json = json.dumps(data['title'])
-                        content_json = json.dumps(data['content'])
-                        announcement_id_json = json.dumps(announcement_id)
-                        run_js(f"window.alasShowAnnouncement({title_json}, {content_json}, {announcement_id_json});")
+                        # Only push if ID is different from the last one or not pushed yet
+                        if announcement_id != self._last_announcement_id:
+                            title_json = json.dumps(data['title'])
+                            content_json = json.dumps(data['content'])
+                            announcement_id_json = json.dumps(announcement_id)
+                            run_js(f"window.alasShowAnnouncement({title_json}, {content_json}, {announcement_id_json});")
+                            self._last_announcement_id = announcement_id
             except Exception as e:
                 logger.debug(f"Announcement check failed: {e}")
 
@@ -2278,8 +2284,8 @@ class AlasGUI(Frame):
                 check_and_push_announcement()
                 yield
 
-        # Add announcement checker task (initial delay 1 second for quick first check)
-        self.task_handler.add(announcement_checker(), delay=1, pending_delete=True)
+        # Add announcement checker task (initial delay 1 second)
+        self.task_handler.add(announcement_checker(), delay=1)
 
         # Return to previous page
         if aside not in ["Home", None]:
