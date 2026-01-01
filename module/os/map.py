@@ -519,12 +519,14 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
     def _cl1_monthly_file(self):
         from pathlib import Path
         project_root = Path(__file__).resolve().parents[2]
-        cl1_dir = project_root / 'log' / 'cl1'
+        # 使用实例名作为子目录
+        instance_name = getattr(self.config, 'config_name', 'default') if hasattr(self, 'config') else 'default'
+        cl1_dir = project_root / 'log' / 'cl1' / instance_name
         try:
             cl1_dir.mkdir(parents=True, exist_ok=True)
             return cl1_dir / 'cl1_monthly.json'
         except Exception:
-            log_dir = project_root / 'log'
+            log_dir = project_root / 'log' / 'cl1' / 'default'
             log_dir.mkdir(parents=True, exist_ok=True)
             return log_dir / 'cl1_monthly.json'
 

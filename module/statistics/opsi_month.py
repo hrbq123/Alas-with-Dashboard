@@ -5,18 +5,22 @@ from __future__ import annotations
 from pathlib import Path
 import json
 from datetime import datetime
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 from module.logger import logger
 
 
 class OpsiMonthStats:
-    def __init__(self, path: Path | None = None) -> None:
+    def __init__(self, path: Path | None = None, instance_name: str | None = None) -> None:
         if path is None:
             project_root = Path(__file__).resolve().parents[2]
-            self._path = project_root / "log" / "cl1" / "cl1_monthly.json"
+            if instance_name:
+                self._path = project_root / "log" / "cl1" / instance_name / "cl1_monthly.json"
+            else:
+                self._path = project_root / "log" / "cl1" / "default" / "cl1_monthly.json"
         else:
             self._path = Path(path)
+        self._instance_name = instance_name or "default"
 
     def _load_raw(self) -> Dict[str, Any]:
         if not self._path.exists():
@@ -115,21 +119,22 @@ class OpsiMonthStats:
 
 
 
-_singleton: OpsiMonthStats | None = None
+_singleton: Dict[str, OpsiMonthStats] = {}
 
 
-def get_opsi_stats() -> OpsiMonthStats:
+def get_opsi_stats(instance_name: str | None = None) -> OpsiMonthStats:
     global _singleton
-    if _singleton is None:
-        _singleton = OpsiMonthStats()
-    return _singleton
+    key = instance_name or "default"
+    if key not in _singleton:
+        _singleton[key] = OpsiMonthStats(instance_name=instance_name)
+    return _singleton[key]
 
 
 __all__ = ["get_opsi_stats", "OpsiMonthStats", "compute_monthly_cl1_akashi_ap"]
 
 
 
-def compute_monthly_cl1_akashi_ap(year: int | None = None, month: int | None = None, campaign: str = "opsi_akashi") -> int:
+def compute_monthly_cl1_akashi_ap(year: int | None = None, month: int | None = None, campaign: str = "opsi_akashi", instance_name: str | None = None) -> int:
     from pathlib import Path
     import json
     import csv
@@ -144,9 +149,10 @@ def compute_monthly_cl1_akashi_ap(year: int | None = None, month: int | None = N
     key_prefix = f"{year:04d}-{month:02d}"
 
     project_root = Path(__file__).resolve().parents[2]
+    instance_dir = instance_name or "default"
 
     try:
-        fpath = project_root / "log" / "cl1" / "cl1_monthly.json"
+        fpath = project_root / "log" / "cl1" / instance_dir / "cl1_monthly.json"
         if fpath.exists():
             try:
                 data = json.loads(fpath.read_text(encoding="utf-8")) or {}

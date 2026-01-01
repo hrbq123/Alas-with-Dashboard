@@ -331,8 +331,9 @@ class AlasGUI(Frame):
             def _render_opsi_stats():
                 try:
                     from module.statistics.opsi_month import get_opsi_stats, compute_monthly_cl1_akashi_ap
-
-                    s = get_opsi_stats().summary()
+                    # 使用当前实例名称获取统计数据
+                    instance_name = self.alas_name if hasattr(self, 'alas_name') and self.alas_name else None
+                    s = get_opsi_stats(instance_name=instance_name).summary()
                 except Exception as e:
                     with use_scope("opsi_stats", clear=True):
                         put_text(f"Failed to load OpSi stats: {e}")
@@ -366,7 +367,7 @@ class AlasGUI(Frame):
                     akashi_rate = "-"
 
                 try:
-                    ap_bought = compute_monthly_cl1_akashi_ap()
+                    ap_bought = compute_monthly_cl1_akashi_ap(instance_name=instance_name)
                 except Exception:
                     ap_bought = "-"
 
@@ -417,7 +418,8 @@ class AlasGUI(Frame):
                             return
 
                         try:
-                            s_local = get_opsi_stats().summary() or {}
+                            instance_name_local = self.alas_name if hasattr(self, 'alas_name') and self.alas_name else None
+                            s_local = get_opsi_stats(instance_name=instance_name_local).summary() or {}
                         except Exception:
                             s_local = {}
 
@@ -438,7 +440,7 @@ class AlasGUI(Frame):
                             akashi_percent_local = 0.0
 
                         try:
-                            purchased_local = compute_monthly_cl1_akashi_ap() or 0
+                            purchased_local = compute_monthly_cl1_akashi_ap(instance_name=instance_name_local) or 0
                         except Exception:
                             purchased_local = 0
 
@@ -514,14 +516,15 @@ class AlasGUI(Frame):
                 try:
                     from module.statistics.ship_exp_stats import get_ship_exp_stats
                     from module.statistics.opsi_month import get_opsi_stats as get_opsi_stats_func
-                    
-                    stats = get_ship_exp_stats()
+                    # 使用当前实例名称获取统计数据
+                    instance_name = self.alas_name if hasattr(self, 'alas_name') and self.alas_name else None
+                    stats = get_ship_exp_stats(instance_name=instance_name)
                     if not stats.data or not stats.data.get('ships'):
                         with use_scope("ship_exp_table", clear=True):
                             put_html('<div style="color:#888; margin:12px 0">暂无舰船经验数据，请先运行"每日经验检测"任务</div>')
                         return
                     
-                    current_battles = get_opsi_stats_func().summary().get('total_battles', 0)
+                    current_battles = get_opsi_stats_func(instance_name=instance_name).summary().get('total_battles', 0)
                     target_level = stats.data.get('target_level', 125)
                     avg_battle_time = stats.get_average_battle_time()
                     exp_per_hour = stats.get_exp_per_hour()

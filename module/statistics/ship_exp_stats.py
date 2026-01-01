@@ -31,12 +31,14 @@ class ShipExpStats:
     MAX_BATTLE_TIME_SAMPLES = 100  # 保留最近100场战斗时间样本
     MAX_DAILY_STATS_DAYS = 30      # 保留最近30天的统计
     
-    def __init__(self, path: Optional[Path] = None):
+    def __init__(self, path: Optional[Path] = None, instance_name: Optional[str] = None):
         if path is None:
             project_root = Path(__file__).resolve().parents[2]
-            self._path = project_root / "log" / "cl1" / "ship_exp_data.json"
+            instance_dir = instance_name or "default"
+            self._path = project_root / "log" / "cl1" / instance_dir / "ship_exp_data.json"
         else:
             self._path = Path(path)
+        self._instance_name = instance_name or "default"
         self.data = self._load()
         
         # 当前战斗的开始时间
@@ -337,28 +339,30 @@ class ShipExpStats:
 
 # ========== 单例模式和便捷函数 ==========
 
-_stats_instance: Optional[ShipExpStats] = None
+_stats_instances: Dict[str, ShipExpStats] = {}
 
 
-def get_ship_exp_stats() -> ShipExpStats:
-    """获取 ShipExpStats 单例实例"""
-    global _stats_instance
-    if _stats_instance is None:
-        _stats_instance = ShipExpStats()
+def get_ship_exp_stats(instance_name: Optional[str] = None) -> ShipExpStats:
+    """获取 ShipExpStats 实例"""
+    global _stats_instances
+    key = instance_name or "default"
+    if key not in _stats_instances:
+        _stats_instances[key] = ShipExpStats(instance_name=instance_name)
     else:
         # 刷新数据
-        _stats_instance.data = _stats_instance._load()
-    return _stats_instance
+        _stats_instances[key].data = _stats_instances[key]._load()
+    return _stats_instances[key]
 
 
 def save_ship_exp_data(
     ships: List[Dict[str, Any]],
     target_level: int,
     fleet_index: int,
-    battle_count_at_check: int
+    battle_count_at_check: int,
+    instance_name: Optional[str] = None
 ) -> None:
     """便捷函数: 保存舰船经验检测数据"""
-    get_ship_exp_stats().save_ship_data(
+    get_ship_exp_stats(instance_name=instance_name).save_ship_data(
         ships=ships,
         target_level=target_level,
         fleet_index=fleet_index,

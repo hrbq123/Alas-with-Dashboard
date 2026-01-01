@@ -23,12 +23,13 @@ from module.logger import logger
 class Cl1DataSubmitter:
     """CL1数据提交器"""
     
-    def __init__(self, endpoint: str = 'https://alascloudapi.nanoda.work/api/telemetry'):
+    def __init__(self, endpoint: str = 'https://alascloudapi.nanoda.work/api/telemetry', instance_name: str | None = None):
         """
         初始化数据提交器
         
         Args:
             endpoint: API端点URL
+            instance_name: Alas实例名称
         """
         self.endpoint = endpoint
         self._device_id: Optional[str] = None
@@ -37,7 +38,8 @@ class Cl1DataSubmitter:
         
         # 获取项目根目录
         self.project_root = Path(__file__).resolve().parents[2]
-        self.cl1_dir = self.project_root / 'log' / 'cl1'
+        self._instance_name = instance_name or 'default'
+        self.cl1_dir = self.project_root / 'log' / 'cl1' / self._instance_name
         self.cl1_file = self.cl1_dir / 'cl1_monthly.json'
     
     @property
@@ -231,16 +233,17 @@ class Cl1DataSubmitter:
             yield
 
 
-# 全局单例
-_submitter: Optional[Cl1DataSubmitter] = None
+# 全局单例 - 每个实例一个提交器
+_submitters: Dict[str, Cl1DataSubmitter] = {}
 
 
-def get_cl1_submitter() -> Cl1DataSubmitter:
-    """获取CL1数据提交器单例"""
-    global _submitter
-    if _submitter is None:
-        _submitter = Cl1DataSubmitter()
-    return _submitter
+def get_cl1_submitter(instance_name: str | None = None) -> Cl1DataSubmitter:
+    """获取CL1数据提交器实例"""
+    global _submitters
+    key = instance_name or 'default'
+    if key not in _submitters:
+        _submitters[key] = Cl1DataSubmitter(instance_name=instance_name)
+    return _submitters[key]
 
 
 __all__ = ['Cl1DataSubmitter', 'get_cl1_submitter']

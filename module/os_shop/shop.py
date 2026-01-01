@@ -113,12 +113,14 @@ class OSShop(PortShop, AkashiShop):
 
                             from pathlib import Path as _Path
                             project_root = _Path(__file__).resolve().parents[2]
-                            cl1_dir = project_root / 'log' / 'cl1'
+                            # 使用实例名作为子目录
+                            instance_name = getattr(self.config, 'config_name', 'default') if hasattr(self, 'config') else 'default'
+                            cl1_dir = project_root / 'log' / 'cl1' / instance_name
                             try:
                                 cl1_dir.mkdir(parents=True, exist_ok=True)
                                 fpath = cl1_dir / 'cl1_monthly.json'
                             except Exception:
-                                log_dir = project_root / 'log'
+                                log_dir = project_root / 'log' / 'cl1' / 'default'
                                 log_dir.mkdir(parents=True, exist_ok=True)
                                 fpath = log_dir / 'cl1_monthly.json'
 
