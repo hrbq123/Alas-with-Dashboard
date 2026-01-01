@@ -62,13 +62,12 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
             # Break
             if self.combat_appear():
                 break
-
     def is_combat_loading(self):
         """
         Returns:
             bool:
         """
-        image = self.image_crop((0, 620, 1280, 720), copy=False)
+        image = self.image_crop((0, 620, 1280, 690), copy=False)
         similarity, button = TEMPLATE_COMBAT_LOADING.match_luma_result(image)
         if similarity > 0.85:
             loading = (button.area[0] + 38 - LOADING_BAR.area[0]) / (LOADING_BAR.area[2] - LOADING_BAR.area[0])
@@ -76,12 +75,10 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
             # 提交云端日志用来Debug
             ApiClient.submit_bug_log('检测到加载条')
             return True
-
         if self.is_combat_executing():
             logger.warning('检测到战斗状态但未检测到加载条')
             ApiClient.submit_bug_log('检测到战斗状态但未检测到加载条')
             return True
-
         return False
 
     def is_combat_executing(self):
