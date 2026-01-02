@@ -2640,6 +2640,12 @@
     "SirenBug_Zone": {
       "name": "OpsiSirenBug.SirenBug_Zone.name",
       "help": "OpsiSirenBug.SirenBug_Zone.help"
+    },
+    "DisableTaskSwitchDuringBug": {
+      "name": "OpsiSirenBug.DisableTaskSwitchDuringBug.name",
+      "help": "OpsiSirenBug.DisableTaskSwitchDuringBug.help",
+      "True": "True",
+      "False": "False"
     }
   },
   "OpsiCheckLeveling": {
@@ -2820,12 +2826,10 @@
     "Dashboard": {
       "TimeError": "時間錯誤",
       "JustNow": "剛剛",
-      "SecondsAgo": "秒前",
       "MinutesAgo": "分鐘前",
       "HoursAgo": "小時前",
       "DaysAgo": "天前",
       "MonthsAgo": "月前",
-      "YearsAgo": "年前",
       "LongTimeAgo": "很久之前",
       "NoData": "無數據",
       "Oil": "石油",

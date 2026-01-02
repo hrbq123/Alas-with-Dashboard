@@ -898,6 +898,11 @@ OpsiSirenBug:
     value: dangerous
     option: [dangerous, safe]
   SirenBug_Zone: 0
+  DisableTaskSwitchDuringBug:
+    type: checkbox
+    value: false
+    option: [true, false]
+
 OpsiCheckLeveling:
   TargetLevel: 0
   LastRun: 2020-01-01 00:00:00

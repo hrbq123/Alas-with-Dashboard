@@ -522,6 +522,7 @@ class GeneratedConfig:
     OpsiSirenBug_SirenBug_Enable = False
     OpsiSirenBug_SirenBug_Type = 'dangerous'  # dangerous, safe
     OpsiSirenBug_SirenBug_Zone = 0
+    OpsiSirenBug_DisableTaskSwitchDuringBug = False  # True, False
 
     # Group `OpsiCheckLeveling`
     OpsiCheckLeveling_TargetLevel = 0

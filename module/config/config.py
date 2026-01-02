@@ -626,6 +626,11 @@ class AzurLaneConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher
         Raises:
             TaskEnd:
         """
+        # 如果设置了禁用任务切换标志（例如Bug利用期间），则跳过检查
+        if getattr(self, '_disable_task_switch', False):
+            logger.info('Task switch check disabled temporarily')
+            return
+        
         if self.task_switched():
             self.task_stop(message=message)
 

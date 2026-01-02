@@ -1312,6 +1312,10 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
                 keys='OpsiHazard1Leveling.OpsiSirenBug.SirenBug_Type',
                 default='dangerous'
             )
+            disable_task_switch = bool(self.config.cross_get(
+                keys='OpsiHazard1Leveling.OpsiSirenBug.DisableTaskSwitchDuringBug',
+                default=False
+            ))
         except Exception as e:
             logger.warning(f'读取SirenBug配置失败: {e}，跳过塞壬研究装置BUG利用')
             return
@@ -1320,30 +1324,50 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         try:
             siren_bug_zone = int(siren_bug_zone)
         except (ValueError, TypeError):
-            pass
+            pass  # 保持原值，如果是字符串（海域名称）则后续处理
 
         # 前置条件校验
-        if not (siren_research_enable and siren_bug_enable and siren_bug_zone):
-            logger.info('SirenBug功能前置条件不满足，跳过塞壬研究装置BUG利用')
+        if not siren_research_enable or not siren_bug_enable:
+            logger.info('SirenBug功能前置条件不满足（SirenResearch_Enable 或 SirenBug_Enable 为 False），跳过塞壬研究装置BUG利用')
+            return
+
+        # 如果启用了禁用任务切换选项，设置标志
+        if disable_task_switch:
+            self.config._disable_task_switch = True
+            logger.info('【塞壬Bug利用】禁用任务切换')
+
+        if not siren_bug_zone:
+            logger.info('SirenBug功能前置条件不满足（SirenBug_Zone 未设置），跳过塞壬研究装置BUG利用')
+            # Ensure the flag is cleared if we return early
+            if disable_task_switch:
+                self.config._disable_task_switch = False
             return
 
         current_zone_id = self.zone.zone_id
         if current_zone_id not in (22, 44):
             logger.warning(f'当前区域{current_zone_id}非侵蚀一，跳过塞壬研究装置BUG利用')
+            # Ensure the flag is cleared if we return early
+            if disable_task_switch:
+                self.config._disable_task_switch = False
             return
         
         erosion_one_zone = self.name_to_zone(current_zone_id)
-        # 解析目标区域
-        try:
-            target_zone = self.name_to_zone(siren_bug_zone)
-        except Exception:
-            logger.warning(f'无法解析SirenBug目标区域: {siren_bug_zone}，跳过塞壬研究装置BUG利用')
-            return
-
+        
         logger.hr(f'RUN SIREN BUG EXPLOITATION')
-        logger.info(f'当前区域: {erosion_one_zone}, 目标区域: {target_zone}')
-
+        
         try:
+            # 解析目标区域
+            try:
+                target_zone = self.name_to_zone(siren_bug_zone)
+            except Exception:
+                logger.warning(f'无法解析SirenBug目标区域: {siren_bug_zone}，跳过塞壬研究装置BUG利用')
+                # Ensure the flag is cleared if we return early
+                if disable_task_switch:
+                    self.config._disable_task_switch = False
+                return
+            
+            logger.info(f'当前区域: {erosion_one_zone}, 目标区域: {target_zone}')
+            
             # 跳转至指定高侵蚀区域
             with self.config.temporary(STORY_ALLOW_SKIP=False):
                 self.os_map_goto_globe(unpin=False)
@@ -1403,6 +1427,11 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
                 if not device_handled:
                     logger.warning(f'区域{siren_bug_zone}未找到塞壬研究装置，跳过后续操作')
 
+            # Bug利用核心操作完成，清除禁用任务切换标志
+            if disable_task_switch and hasattr(self.config, '_disable_task_switch'):
+                self.config._disable_task_switch = False
+                logger.info('【塞壬Bug利用】核心操作完成，恢复任务切换')
+
             # 返回侵蚀一区域
             self.os_map_goto_globe(unpin=False)
             self.globe_goto(erosion_one_zone, types=('SAFE', 'DANGEROUS'), refresh=True)
@@ -1424,20 +1453,27 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         except Exception as e:
             logger.error(f'塞壬研究装置BUG利用失败: {e}', exc_info=True)
             
+            # 异常时清除标志
+            if disable_task_switch and hasattr(self.config, '_disable_task_switch'):
+                self.config._disable_task_switch = False
+                logger.info('【塞壬Bug利用】异常退出，恢复任务切换')
+            
             # 发送失败通知
             try:
                 if hasattr(self, 'notify_push'):
                     self.notify_push(
                         title="[Alas] 塞壬Bug利用 - 失败",
-                        content=f"塞壬研究装置Bug利用失败\\n错误: {str(e)}\\n尝试返回侵蚀一区域"
+                        content=f"塞壬研究装置BUG利用失败\\n错误: {str(e)}\\n请检查日志"
                     )
             except Exception as notify_err:
                 logger.debug(f'发送失败通知失败: {notify_err}')
             
-            # 异常时强制返回侵蚀一区域
+            # 尝试返回侵蚀一
             try:
                 self.os_map_goto_globe(unpin=False)
                 self.globe_goto(erosion_one_zone, types=('SAFE', 'DANGEROUS'), refresh=True)
-                self.run_auto_search(question=True, rescan='full', after_auto_search=True)
-            except Exception as e2:
-                logger.error(f'异常恢复失败: {e2}', exc_info=True)            
+                self.zone_init()
+            except Exception as return_err:
+                logger.error(f'返回侵蚀一失败: {return_err}')
+        finally:
+            pass

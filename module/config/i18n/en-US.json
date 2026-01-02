@@ -2640,6 +2640,12 @@
     "SirenBug_Zone": {
       "name": "OpsiSirenBug.SirenBug_Zone.name",
       "help": "OpsiSirenBug.SirenBug_Zone.help"
+    },
+    "DisableTaskSwitchDuringBug": {
+      "name": "OpsiSirenBug.DisableTaskSwitchDuringBug.name",
+      "help": "OpsiSirenBug.DisableTaskSwitchDuringBug.help",
+      "True": "True",
+      "False": "False"
     }
   },
   "OpsiCheckLeveling": {
@@ -2820,12 +2826,10 @@
     "Dashboard": {
       "TimeError": "Time error",
       "JustNow": "Just now",
-      "SecondsAgo": "seconds ago",
       "MinutesAgo": "Minutes ago",
       "HoursAgo": "Hours ago",
       "DaysAgo": "Days ago",
       "MonthsAgo": "Months ago",
-      "YearsAgo": "years ago",
       "LongTimeAgo": "Long time ago",
       "NoData": "No data",
       "Oil": "Oil",

@@ -9602,6 +9602,14 @@
       "SirenBug_Zone": {
         "type": "input",
         "value": 0
+      },
+      "DisableTaskSwitchDuringBug": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       }
     },
     "OpsiFleet": {
