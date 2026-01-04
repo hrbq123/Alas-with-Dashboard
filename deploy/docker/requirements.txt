@@ -33,7 +33,7 @@ pypresence==4.2.1
 
 # Ocr
 cnocr==1.2.2
-mxnet==1.9.1
+mxnet==1.6.0
 
 # Webui
 pywebio==1.6.2
