@@ -97,7 +97,7 @@ class EquipmentCodeHandler(StorageHandler):
             if self.appear(EQUIPMENT_CODE_PAGE_CHECK, offset=(5, 5)):
                 break
 
-            if self.appear_then_click(EQUIPMENT_CODE_ENTRANCE, offset=(5, 5)):
+            if self.appear_then_click(EQUIPMENT_CODE_ENTRANCE, offset=(5, 5), interval=2):
                 continue
 
     # def exit_equip_code_page(self):
@@ -153,7 +153,6 @@ class EquipmentCodeHandler(StorageHandler):
         for index in range(max_index):
             if not self.appear(globals()['EQUIPMENT_CODE_EQUIP_{index}'.format(index=index)], offset=(5, 5)):
                 return False
-        
         return True
     
     def clear_equip_preview(self, skip_first_screenshot=True):
@@ -168,7 +167,7 @@ class EquipmentCodeHandler(StorageHandler):
                 logger.info('Confirm equipment preview cleared.')
                 break
 
-            if self.appear_then_click(EQUIPMENT_CODE_CLEAR, offset=(5, 5)):
+            if self.appear_then_click(EQUIPMENT_CODE_CLEAR, offset=(5, 5), interval=2):
                 continue
 
     def enter_equip_code_input_mode(self, skip_first_screenshot=True):
@@ -178,7 +177,7 @@ class EquipmentCodeHandler(StorageHandler):
             else:
                 self.device.screenshot()
 
-            if self.appear(EQUIPMENT_CODE_ENTER, offset=(5, 5)):
+            if self.appear(EQUIPMENT_CODE_ENTER, offset=(5, 5), interval=2):
                 self.device.click(EQUIPMENT_CODE_TEXTBOX)
                 continue
 
@@ -231,8 +230,8 @@ class EquipmentCodeHandler(StorageHandler):
         ship = self.current_ship()
         self.device.u2_set_fastinput_ime(True)
         logger.attr("Current_ime", self.device.u2_current_ime())
-        self.click_export_button()
         if self.codes.__getattribute__(ship) is None:
+            self.click_export_button()
             self.export_equip_code(ship)
         self.clear_equip_preview()
         for _ in range(5):

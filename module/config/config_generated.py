@@ -99,6 +99,7 @@ class GeneratedConfig:
     # Group `Error`
     Error_HandleError = True
     Error_SaveError = True
+    Error_StrictRestart = False
     Error_OnePushConfig = 'provider: null'
     Error_ScreenshotLength = 1
 
@@ -155,7 +156,7 @@ class GeneratedConfig:
     # Group `StopCondition`
     StopCondition_OilLimit = 1000
     StopCondition_RunCount = 0
-    StopCondition_MapAchievement = 'non_stop'  # non_stop, 100_percent_clear, map_3_stars, threat_safe, threat_safe_without_3_stars
+    StopCondition_MapAchievement = 'non_stop'  # non_stop, non_stop_clear_all, 100_percent_clear, map_3_stars, threat_safe, threat_safe_without_3_stars
     StopCondition_StageIncrease = False
     StopCondition_GetNewShip = False
     StopCondition_ReachLevel = 0
@@ -184,11 +185,13 @@ class GeneratedConfig:
     Emotion_Fleet1Control = 'prevent_yellow_face'  # keep_exp_bonus, prevent_green_face, prevent_yellow_face, prevent_red_face
     Emotion_Fleet1Recover = 'not_in_dormitory'  # not_in_dormitory, dormitory_floor_1, dormitory_floor_2
     Emotion_Fleet1Oath = False
+    Emotion_Fleet1Onsen = False
     Emotion_Fleet2Value = 119
     Emotion_Fleet2Record = datetime.datetime(2020, 1, 1, 0, 0)
     Emotion_Fleet2Control = 'prevent_yellow_face'  # keep_exp_bonus, prevent_green_face, prevent_yellow_face, prevent_red_face
     Emotion_Fleet2Recover = 'not_in_dormitory'  # not_in_dormitory, dormitory_floor_1, dormitory_floor_2
     Emotion_Fleet2Oath = False
+    Emotion_Fleet2Onsen = False
 
     # Group `HpControl`
     HpControl_UseHpBalance = False
@@ -218,12 +221,17 @@ class GeneratedConfig:
     C124LargeLeveling_PickupAmmo = 3  # 3, 4, 5
 
     # Group `GemsFarming`
-    GemsFarming_ChangeFlagship = 'ship'  # ship, ship_equip
-    GemsFarming_CommonCV = 'any'  # any, langley, bogue, ranger, hermes
-    GemsFarming_ChangeVanguard = 'ship'  # disabled, ship, ship_equip
-    GemsFarming_CommonDD = 'any'  # any, favourite, aulick_or_foote, cassin_or_downes, z20_or_z21
+    GemsFarming_ChangeFlagship = 'ship_equip'  # ship, ship_equip
+    GemsFarming_CommonCV = 'any'  # custom, any, eagle, langley, bogue, ranger, hermes
+    GemsFarming_CommonCVFilter = 'bogue > ranger > langley > hermes'
+    GemsFarming_ChangeVanguard = 'ship_equip'  # disabled, ship, ship_equip
+    GemsFarming_CommonDD = 'any'  # custom, any, favourite, aulick_or_foote, cassin_or_downes, z20_or_z21, DDG
+    GemsFarming_CommonDDFilter = 'z20 > z21 > aulick > foote > cassin > downes'
     GemsFarming_EquipmentCode = 'DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null'
-    GemsFarming_CommissionLimit = True
+    GemsFarming_ALLowHighFlagshipLevel = False
+    GemsFarming_ALLowLowVanguardLevel = False
+    GemsFarming_DelayTaskIFNoFlagship = False
+    GemsFarming_CommissionLimit = False
 
     # Group `EventGeneral`
     EventGeneral_PtLimit = 0
@@ -247,6 +255,10 @@ class GeneratedConfig:
 
     # Group `Hospital`
     Hospital_UseRecommendFleet = True
+
+    # Group `HospitalEvent`
+    HospitalEvent_Mode = 'hard'  # easy, normal, hard
+    HospitalEvent_Stage = 'T1'  # T1, T2, T3, T4, ESP
 
     # Group `MaritimeEscort`
     MaritimeEscort_Enable = True
@@ -329,11 +341,136 @@ class GeneratedConfig:
     Reward_CollectCoin = True
     Reward_CollectExp = True
     Reward_CollectMission = True
-    Reward_CollectWeeklyMission = True
+    Reward_CollectWeeklyMission = False
 
     # Group `Awaken`
     Awaken_LevelCap = 'level120'  # level120, level125
     Awaken_Favourite = False
+
+    # Group `Island1`
+    Island1_Receive = False
+    Island1_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8
+    Island1_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island1_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8
+    Island1_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island1_Option3 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8
+    Island1_Character3 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island1_Option4 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8
+    Island1_Character4 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island2`
+    Island2_Receive = False
+    Island2_Option1 = 0  # 0, 1
+    Island2_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island2_Option2 = 0  # 0, 2
+    Island2_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island2_Option3 = 0  # 0, 3
+    Island2_Character3 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island2_Option4 = 0  # 0, 4
+    Island2_Character4 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island3`
+    Island3_Receive = False
+    Island3_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6
+    Island3_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island3_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6
+    Island3_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island3_Option3 = 0  # 0, 1, 2, 3, 4, 5, 6
+    Island3_Character3 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island3_Option4 = 0  # 0, 1, 2, 3, 4, 5, 6
+    Island3_Character4 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island4`
+    Island4_Receive = False
+    Island4_Option1 = 0  # 0, 1, 2, 3, 4
+    Island4_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island4_Option2 = 0  # 0, 1, 2, 3, 4
+    Island4_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island4_Option3 = 0  # 0, 1, 2, 3, 4
+    Island4_Character3 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island4_Option4 = 0  # 0, 1, 2, 3, 4
+    Island4_Character4 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island5`
+    Island5_Receive = False
+    Island5_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island5_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island5_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island5_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island5_Option3 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island5_Character3 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island5_Option4 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island5_Character4 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island6`
+    Island6_Receive = False
+    Island6_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7
+    Island6_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island6_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7
+    Island6_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island7`
+    Island7_Receive = False
+    Island7_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island7_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island7_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island7_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island8`
+    Island8_Receive = False
+    Island8_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+    Island8_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island8_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+    Island8_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island9`
+    Island9_Receive = False
+    Island9_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island9_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island9_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island9_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island10`
+    Island10_Receive = False
+    Island10_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7
+    Island10_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island10_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7
+    Island10_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island11`
+    Island11_Receive = False
+    Island11_Option1 = 0  # 0, 1, 2, 3, 4, 5
+    Island11_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island11_Option2 = 0  # 0, 1, 2, 3, 4, 5
+    Island11_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island12`
+    Island12_Receive = False
+    Island12_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6
+    Island12_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island12_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6
+    Island12_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island13`
+    Island13_Receive = False
+    Island13_Option1 = 0  # 0, 1, 2, 3, 4
+    Island13_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island13_Option2 = 0  # 0, 1, 2, 3, 4
+    Island13_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island14`
+    Island14_Receive = False
+    Island14_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island14_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island14_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island14_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+
+    # Group `Island15`
+    Island15_Receive = False
+    Island15_Option1 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island15_Character1 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
+    Island15_Option2 = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Island15_Character2 = 'manjuu'  # manjuu, saratoga, new_jersey, tashkent, lemalin, shimakaze, akashi, ying_swei, chao_ho, unicorn, cheshire, amagi_chan
 
     # Group `GeneralShop`
     GeneralShop_UseGems = False
@@ -439,6 +576,7 @@ class GeneratedConfig:
     Hard_HardFleet = 1  # 1, 2
 
     # Group `Exercise`
+    Exercise_DelayUntilHoursBeforeNextUpdate = 12  # 1, 2, 3, 4, 5, 12
     Exercise_OpponentChooseMode = 'max_exp'  # max_exp, easiest, leftmost, easiest_else_exp
     Exercise_OpponentTrial = 1
     Exercise_ExerciseStrategy = 'aggressive'  # aggressive, fri18, sat0, sat12, sat18, sun0, sun12, sun18
@@ -458,6 +596,8 @@ class GeneratedConfig:
     OpsiGeneral_BuyActionPointLimit = 0  # 0, 1, 2, 3, 4, 5
     OpsiGeneral_OilLimit = 1000
     OpsiGeneral_RepairThreshold = 0.4
+    OpsiGeneral_UseRepairPack = False
+    OpsiGeneral_RepairPackThreshold = 0.9
     OpsiGeneral_DoRandomMapEvent = True
     OpsiGeneral_AkashiShopFilter = 'ActionPoint > PurpleCoins'
 
@@ -484,6 +624,7 @@ class GeneratedConfig:
     # Group `OpsiShop`
     OpsiShop_PresetFilter = 'max_benefit_meta'  # max_benefit, max_benefit_meta, no_meta, all, custom
     OpsiShop_CustomFilter = 'LoggerAbyssalT6 > LoggerAbyssalT5 > LoggerObscure > LoggerAbyssalT4 > ActionPoint > PurpleCoins\n> GearDesignPlanT3 > PlateRandomT4 > DevelopmentMaterialT3 > GearDesignPlanT2 > GearPart\n> OrdnanceTestingReportT3 > OrdnanceTestingReportT2 > DevelopmentMaterialT2 > OrdnanceTestingReportT1\n> METARedBook > CrystallizedHeatResistantSteel > NanoceramicAlloy > NeuroplasticProstheticArm > SupercavitationGenerator'
+    OpsiShop_DisableBeforeDate = 0
 
     # Group `OpsiVoucher`
     OpsiVoucher_Filter = 'LoggerAbyssal > LoggerObscure > Book > Coin > Fragment'
@@ -491,15 +632,21 @@ class GeneratedConfig:
     # Group `OpsiDaily`
     OpsiDaily_DoMission = True
     OpsiDaily_UseTuningSample = True
+    OpsiDaily_SkipSirenResearchMission = False
+    OpsiDaily_KeepMissionZone = False
+    OpsiDaily_MissionZones = None
 
     # Group `OpsiObscure`
+    OpsiObscure_SkipHazard2Obscure = False
     OpsiObscure_ForceRun = False
 
     # Group `OpsiAbyssal`
     OpsiAbyssal_ForceRun = False
 
     # Group `OpsiStronghold`
+    OpsiStronghold_SubmarineEveryCombat = False
     OpsiStronghold_ForceRun = False
+    OpsiStronghold_HasStronghold = True
 
     # Group `OpsiMonthBoss`
     OpsiMonthBoss_Mode = 'normal'  # normal, normal_hard
@@ -508,13 +655,15 @@ class GeneratedConfig:
 
     # Group `OpsiMeowfficerFarming`
     OpsiMeowfficerFarming_ActionPointPreserve = 1000
-    OpsiMeowfficerFarming_HazardLevel = 5  # 3, 4, 5, 6, 10
+    OpsiMeowfficerFarming_HazardLevel = 5  # 2, 3, 4, 5, 6, 10
     OpsiMeowfficerFarming_TargetZone = 0
     OpsiMeowfficerFarming_StayInZone = False
+    OpsiMeowfficerFarming_APPreserveUntilReset = False
 
     # Group `OpsiHazard1Leveling`
     OpsiHazard1Leveling_TargetZone = 0  # 0, 44, 22
-    OpsiHazard1Leveling_YellowCoinPreserve = 100000
+    OpsiHazard1Leveling_OperationCoinsPreserve = 100000
+    OpsiHazard1Leveling_DoScanningDevice = False
     OpsiHazard1Leveling_MinimumActionPointReserve = 200
     OpsiHazard1Leveling_ExecuteFixedPatrolScan = False
     OpsiHazard1Leveling_Cl1Filter = 'ActionPoint > PurpleCoins'
@@ -544,6 +693,14 @@ class GeneratedConfig:
 
     # Group `EventStory`
     EventStory_SkipBattle = False  # True, False
+
+    # Group `BoxDisassemble`
+    BoxDisassemble_UsePurpleBox = False
+    BoxDisassemble_PurpleBoxLimit = 100
+    BoxDisassemble_UseBlueBox = False
+    BoxDisassemble_BlueBoxLimit = 1000
+    BoxDisassemble_UseWhiteBox = True
+    BoxDisassemble_WhiteBoxLimit = 2000
 
     # Group `Benchmark`
     Benchmark_DeviceType = 'emulator'  # emulator, plone_cloud_with_adb, phone_cloud_without_adb, android_phone, android_phone_vmos

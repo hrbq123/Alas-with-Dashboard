@@ -625,7 +625,5 @@ def readable_time(before: str, value: str) -> str:
     else:
         timedata['time_name'] = 'LongTimeAgo'
     return timedata
-
-
 if __name__ == '__main__':
     get_os_reset_remain()

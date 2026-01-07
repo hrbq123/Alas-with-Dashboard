@@ -3,11 +3,11 @@ Deploy:
     # URL of AzurLaneAutoScript repository
     # [CN user] Use 'git://git.lyoko.io/AzurLaneAutoScript' for faster and more stable download
     # [Other] Use 'https://gitee.com/wqeaxc/AzurLaneAutoScript1'
-    Repository: https://gitee.com/wqeaxc/AzurLaneAutoScript1
+    Repository: "https://gitee.com/wqeaxc/AzurLaneAutoScript1"
     # Branch of Alas
     # [Developer] Use 'dev', 'app', etc, to try new features
     # [Other] Use 'master', the stable branch
-    Branch: master
+    Branch: "master"
     # Filepath of git executable `git.exe`
     # [Easy installer] Use './toolkit/Git/mingw64/bin/git.exe'
     # [Other] Use you own git
@@ -146,7 +146,7 @@ Deploy:
     DpiScaling: true
     # --key. Password of web ui
     # Useful when expose Alas to the public network
-    Password: null
+    Password: 123456
     # --cdn. Use jsdelivr cdn for pywebio static files (css, js).
     # 'true' for jsdelivr cdn
     # 'false' for self host cdn (automatically)

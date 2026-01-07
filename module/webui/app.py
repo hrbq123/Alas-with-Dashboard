@@ -50,6 +50,7 @@ import module.webui.lang as lang
 from module.config.config import AzurLaneConfig, Function
 from module.config.deep import deep_get, deep_iter, deep_set
 from module.config.env import IS_ON_PHONE_CLOUD
+from module.config.server import to_server
 from module.config.utils import (
     alas_instance,
     alas_template,
@@ -60,6 +61,7 @@ from module.config.utils import (
     readable_time,
 )
 from module.config.utils import time_delta
+from module.log_res.log_res import LogRes
 from module.logger import logger
 from module.log_res import LogRes
 from module.ocr.rpc import start_ocr_server_process, stop_ocr_server_process
@@ -637,7 +639,12 @@ class AlasGUI(Frame):
             # Default value
             output_kwargs["value"] = value
             # Options
-            output_kwargs["options"] = options = output_kwargs.pop("option", [])
+            options = output_kwargs.pop("option", [])
+            server = to_server(deep_get(config, 'Alas.Emulator.PackageName', 'cn'))
+            available_events = deep_get(self.ALAS_ARGS, keys=f'{task}.{group_name}.{arg_name}.option_{server}')
+            if available_events is not None:
+                options = [opt for opt in options if opt in available_events]
+            output_kwargs["options"] = options
             # Options label
             options_label = []
             for opt in options:
@@ -769,8 +776,7 @@ class AlasGUI(Frame):
                             ],
                         ),
                     ],
-                )
-
+                ),
             else:
                 put_scope(
                     "log-bar",
@@ -781,7 +787,7 @@ class AlasGUI(Frame):
                         put_scope(
                             "log-bar-btns",
                             [
-                                put_scope("screenshot_control_btn"),                                
+                                put_scope("screenshot_control_btn"),
                                 put_scope("log_scroll_btn"),
                                 put_scope("dashboard_btn"),
                             ],
@@ -789,7 +795,7 @@ class AlasGUI(Frame):
                         put_html('<hr class="hr-group">'),
                         put_scope("dashboard"),
                     ],
-                )
+                ),
             put_scope("log", [put_html("")])
 
         log.console.width = log.get_width()
@@ -1084,6 +1090,7 @@ class AlasGUI(Frame):
             else:
                 value_limit = ''
                 value_total = ''
+
 
             value_time = group['Record']
             if value_time is None or value_time == datetime(2020, 1, 1, 0, 0, 0):

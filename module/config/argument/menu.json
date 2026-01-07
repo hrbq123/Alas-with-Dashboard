@@ -23,11 +23,11 @@
     "page": "setting",
     "tasks": [
       "EventGeneral",
-      "Coalition",
       "Event",
       "Event2",
       "Raid",
       "Hospital",
+      "Coalition",
       "MaritimeEscort",
       "EventShop",
       "WarArchives"
@@ -57,7 +57,8 @@
       "Meowfficer",
       "Guild",
       "Reward",
-      "Awaken"
+      "Awaken",
+      "Island"
     ]
   },
   "DailyMission": {
@@ -104,6 +105,7 @@
       "Daemon",
       "OpsiDaemon",
       "EventStory",
+      "BoxDisassemble",
       "Benchmark",
       "AzurLaneUncensored",
       "GameManager"

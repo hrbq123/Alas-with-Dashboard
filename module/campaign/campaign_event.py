@@ -24,6 +24,10 @@ class CampaignEvent(CampaignStatus):
                 keys = f'{task}.Scheduler.Enable'
                 logger.info(f'Disable task `{task}`')
                 self.config.cross_set(keys=keys, value=False)
+                keys = f'{task}.Emotion.Fleet1Onsen'
+                self.config.cross_set(keys=keys, value=False)
+                keys = f'{task}.Emotion.Fleet2Onsen'
+                self.config.cross_set(keys=keys, value=False)
 
             # Reset GemsFarming
             for task in tasks:
@@ -104,13 +108,7 @@ class CampaignEvent(CampaignStatus):
         limit = self.config.TaskBalancer_CoinLimit
         coin = deep_get(self.config.data, 'Dashboard.Coin.Value')
         logger.attr('Coin Count', coin)
-        tasks = [
-            'Event',
-            'Event2',
-            'Raid',
-            'GemsFarming',
-        ]
-        command = self.config.Scheduler_Command
+
         # Check Coin
         if coin == 0:
             # Avoid wrong/zero OCR result

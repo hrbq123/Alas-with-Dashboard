@@ -132,6 +132,7 @@ EmulatorInfo:
 Error:
   HandleError: true
   SaveError: true
+  StrictRestart: false
   OnePushConfig:
     type: textarea
     mode: yaml
@@ -237,14 +238,7 @@ StopCondition:
   RunCount: 0
   MapAchievement:
     value: non_stop
-    option:
-      [
-        non_stop,
-        100_percent_clear,
-        map_3_stars,
-        threat_safe,
-        threat_safe_without_3_stars,
-      ]
+    option: [ non_stop, non_stop_clear_all, 100_percent_clear, map_3_stars, threat_safe, threat_safe_without_3_stars ]
   StageIncrease: false
   GetNewShip: false
   ReachLevel: 0
@@ -329,6 +323,7 @@ Emotion:
     value: not_in_dormitory
     option: [not_in_dormitory, dormitory_floor_1, dormitory_floor_2]
   Fleet1Oath: false
+  Fleet1Onsen: false
   Fleet2Value: 119
   Fleet2Record:
     value: 2020-01-01 00:00:00
@@ -346,6 +341,7 @@ Emotion:
     value: not_in_dormitory
     option: [not_in_dormitory, dormitory_floor_1, dormitory_floor_2]
   Fleet2Oath: false
+  Fleet2Onsen: false
 HpControl:
   UseHpBalance: false
   UseEmergencyRepair: false
@@ -379,17 +375,21 @@ C124LargeLeveling:
     option: [3, 4, 5]
 GemsFarming:
   ChangeFlagship:
-    value: ship
+    value: ship_equip
     option: [ ship, ship_equip ]
   CommonCV:
     value: any
-    option: [any, langley, bogue, ranger, hermes]
+    option: [ custom, any, eagle, langley, bogue, ranger, hermes ]
+  CommonCVFilter: |-
+    bogue > ranger > langley > hermes
   ChangeVanguard:
-    value: ship
+    value: ship_equip
     option: [ disabled, ship, ship_equip ]
   CommonDD:
     value: any
-    option: [ any, favourite, aulick_or_foote , cassin_or_downes, z20_or_z21 ]
+    option: [ custom, any, favourite, aulick_or_foote , cassin_or_downes, z20_or_z21, DDG]
+  CommonDDFilter: |-
+    z20 > z21 > aulick > foote > cassin > downes
   EquipmentCode:
     type: textarea
     mode: yaml
@@ -399,7 +399,10 @@ GemsFarming:
       hermes: null
       langley: null
       ranger: null
-  CommissionLimit: true
+  ALLowHighFlagshipLevel: false
+  ALLowLowVanguardLevel: false
+  DelayTaskIFNoFlagship: false
+  CommissionLimit: false
 
 # ==================== Event ====================
 
@@ -426,6 +429,13 @@ RaidDaily:
     hard > normal > easy
 Hospital:
   UseRecommendFleet: true
+HospitalEvent:
+  Mode:
+    value: hard
+    option: [ easy, normal, hard ]
+  Stage:
+    value: T1
+    option: [ T1, T2, T3, T4, ESP ]
 MaritimeEscort:
   Enable: true
 Coalition:
@@ -604,13 +614,171 @@ Reward:
   CollectCoin: true
   CollectExp: true
   CollectMission: true
-  CollectWeeklyMission: true
+  CollectWeeklyMission: false
 Awaken:
   LevelCap:
     value: level120
     option: [level120, level125]
   Favourite:
     value: false
+_Island:
+  IslandOption4: &IslandOption4
+    value: 0
+    option: [ 0, 1, 2, 3, 4]
+  IslandOption5: &IslandOption5
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5]
+  IslandOption6: &IslandOption6
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6]
+  IslandOption7: &IslandOption7
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7]
+  IslandOption8: &IslandOption8
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+  IslandOption9: &IslandOption9
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  IslandOption10: &IslandOption10
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+  IslandOption11: &IslandOption11
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+  IslandCharacter: &IslandCharacter
+    value: manjuu
+    option:
+      - manjuu
+      - saratoga
+      - new_jersey
+      - tashkent
+      - lemalin
+      - shimakaze
+      - akashi
+      - ying_swei
+      - chao_ho
+      - unicorn
+      - cheshire
+      - amagi_chan
+Island1:
+  Receive: false
+  Option1: *IslandOption8
+  Character1: *IslandCharacter
+  Option2: *IslandOption8
+  Character2: *IslandCharacter
+  Option3: *IslandOption8
+  Character3: *IslandCharacter
+  Option4: *IslandOption8
+  Character4: *IslandCharacter
+Island2:
+  Receive: false
+  Option1:
+    value: 0
+    option: [ 0, 1 ]
+  Character1: *IslandCharacter
+  Option2:
+    value: 0
+    option: [ 0, 2 ]
+  Character2: *IslandCharacter
+  Option3:
+    value: 0
+    option: [ 0, 3 ]
+  Character3: *IslandCharacter
+  Option4:
+    value: 0
+    option: [ 0, 4 ]
+  Character4: *IslandCharacter
+Island3:
+  Receive: false
+  Option1: *IslandOption6
+  Character1: *IslandCharacter
+  Option2: *IslandOption6
+  Character2: *IslandCharacter
+  Option3: *IslandOption6
+  Character3: *IslandCharacter
+  Option4: *IslandOption6
+  Character4: *IslandCharacter
+Island4:
+  Receive: false
+  Option1: *IslandOption4
+  Character1: *IslandCharacter
+  Option2: *IslandOption4
+  Character2: *IslandCharacter
+  Option3: *IslandOption4
+  Character3: *IslandCharacter
+  Option4: *IslandOption4
+  Character4: *IslandCharacter
+Island5:
+  Receive: false
+  Option1: *IslandOption9
+  Character1: *IslandCharacter
+  Option2: *IslandOption9
+  Character2: *IslandCharacter
+  Option3: *IslandOption9
+  Character3: *IslandCharacter
+  Option4: *IslandOption9
+  Character4: *IslandCharacter
+Island6:
+  Receive: false
+  Option1: *IslandOption7
+  Character1: *IslandCharacter
+  Option2: *IslandOption7
+  Character2: *IslandCharacter
+Island7:
+  Receive: false
+  Option1: *IslandOption9
+  Character1: *IslandCharacter
+  Option2: *IslandOption9
+  Character2: *IslandCharacter
+Island8:
+  Receive: false
+  Option1: *IslandOption11
+  Character1: *IslandCharacter
+  Option2: *IslandOption11
+  Character2: *IslandCharacter
+Island9:
+  Receive: false
+  Option1: *IslandOption9
+  Character1: *IslandCharacter
+  Option2: *IslandOption9
+  Character2: *IslandCharacter
+Island10:
+  Receive: false
+  Option1: *IslandOption7
+  Character1: *IslandCharacter
+  Option2: *IslandOption7
+  Character2: *IslandCharacter
+Island11:
+  Receive: false
+  Option1: *IslandOption5
+  Character1: *IslandCharacter
+  Option2: *IslandOption5
+  Character2: *IslandCharacter
+Island12:
+  Receive: false
+  Option1: *IslandOption6
+  Character1: *IslandCharacter
+  Option2: *IslandOption6
+  Character2: *IslandCharacter
+Island13:
+  Receive: false
+  Option1: *IslandOption4
+  Character1: *IslandCharacter
+  Option2: *IslandOption4
+  Character2: *IslandCharacter
+Island14:
+  Receive: false
+  Option1: *IslandOption9
+  Character1: *IslandCharacter
+  Option2: *IslandOption9
+  Character2: *IslandCharacter
+Island15:
+  Receive: false
+  Option1: *IslandOption9
+  Character1: *IslandCharacter
+  Option2: *IslandOption9
+  Character2: *IslandCharacter
 GeneralShop:
   UseGems: false
   Refresh: false
@@ -793,6 +961,9 @@ Hard:
     value: 1
     option: [1, 2]
 Exercise:
+  DelayUntilHoursBeforeNextUpdate:
+    value: 12
+    option: [ 1, 2, 3, 4, 5, 12]
   OpponentChooseMode:
     value: max_exp
     option: [max_exp, easiest, leftmost, easiest_else_exp]
@@ -820,6 +991,8 @@ OpsiGeneral:
     option: [0, 1, 2, 3, 4, 5]
   OilLimit: 1000
   RepairThreshold: 0.4
+  UseRepairPack: false
+  RepairPackThreshold: 0.9
   DoRandomMapEvent: true
   AkashiShopFilter: |-
     ActionPoint > PurpleCoins
@@ -858,18 +1031,31 @@ OpsiShop:
     > GearDesignPlanT3 > PlateRandomT4 > DevelopmentMaterialT3 > GearDesignPlanT2 > GearPart
     > OrdnanceTestingReportT3 > OrdnanceTestingReportT2 > DevelopmentMaterialT2 > OrdnanceTestingReportT1
     > METARedBook > CrystallizedHeatResistantSteel > NanoceramicAlloy > NeuroplasticProstheticArm > SupercavitationGenerator
+  DisableBeforeDate: 0
 OpsiVoucher:
   Filter: |-
     LoggerAbyssal > LoggerObscure > Book > Coin > Fragment
 OpsiDaily:
   DoMission: true
   UseTuningSample: true
+  SkipSirenResearchMission: false
+  KeepMissionZone: false
+  MissionZones:
+    type: stored
+    value: null
+    display: hide
 OpsiObscure:
+  SkipHazard2Obscure: false
   ForceRun: false
 OpsiAbyssal:
   ForceRun: false
 OpsiStronghold:
+  SubmarineEveryCombat: false
   ForceRun: false
+  HasStronghold:
+    type: stored
+    value: True
+    display: hide
 OpsiMonthBoss:
   Mode:
     value: normal
@@ -880,15 +1066,17 @@ OpsiMeowfficerFarming:
   ActionPointPreserve: 1000
   HazardLevel:
     value: 5
-    option: [3, 4, 5, 6, 10]
+    option: [ 2, 3, 4, 5, 6, 10 ]
   TargetZone:
     value: 0
   StayInZone: false
+  APPreserveUntilReset: false
 OpsiHazard1Leveling:
   TargetZone:
     value: 0
     option: [ 0, 44, 22 ]
-  YellowCoinPreserve: 100000
+  OperationCoinsPreserve: 100000
+  DoScanningDevice: false
   MinimumActionPointReserve: 200
   ExecuteFixedPatrolScan: false
   Cl1Filter: |-
@@ -926,7 +1114,14 @@ EventStory:
   SkipBattle:
     type: checkbox
     value: false
-    option: [true, false]
+    option: [ true, false ]
+BoxDisassemble:
+  UsePurpleBox: false
+  PurpleBoxLimit: 100
+  UseBlueBox: false
+  BlueBoxLimit: 1000
+  UseWhiteBox: true
+  WhiteBoxLimit: 2000
 Benchmark:
   DeviceType:
     value: emulator

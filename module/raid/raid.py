@@ -8,6 +8,7 @@ from module.base.decorator import run_once
 from module.base.timer import Timer
 from module.campaign.campaign_event import CampaignEvent
 from module.combat.assets import *
+from module.event_hospital.assets import *
 from module.exception import OilExhausted, ScriptError
 from module.logger import logger
 from module.map.map_operation import MapOperation
@@ -86,6 +87,8 @@ def raid_name_shorten(name):
         return "RPG"
     elif name == 'raid_20250116':
         return 'CHIENWU'
+    elif name == 'raid_20250327':
+        return 'HOSPITAL'
     else:
         raise ScriptError(f'Unknown raid name: {name}')
 
@@ -190,6 +193,8 @@ def pt_ocr(raid):
         return HuanChangPtOcr(button, letter=(23, 20, 6), threshold=128)
     elif raid == 'CHIENWU':
         return Digit(button, letter=(255, 231, 231), threshold=128)
+    elif raid == 'HOSPITAL':
+        return Digit(button, letter=(255, 251, 255), threshold=128)
 
 
 class Raid(MapOperation, RaidCombat, CampaignEvent):

@@ -10,6 +10,7 @@ from uiautomator2.exceptions import XPathElementNotFoundError
 from uiautomator2.xpath import XPath, XPathSelector
 
 import module.config.server as server
+from module.base.button import Button
 from module.base.timer import Timer
 from module.base.utils import color_similarity_2d, crop, random_rectangle_point
 from module.handler.assets import *
@@ -169,7 +170,6 @@ class LoginHandler(UI):
 
     def app_restart(self):
         logger.hr('App restart')
-
         # --- 新增代码：智能的多次尝试重启逻辑 ---
         RESTART_TRIES = 4                    # 最大尝试次数
         FIRST_TRY_WAIT_SECONDS = 30          # 首次尝试等待时间
@@ -201,10 +201,8 @@ class LoginHandler(UI):
             logger.critical(f"Failed to start app after {RESTART_TRIES} attempts. This might be a serious issue.")
             from module.exception import RequestHumanTakeover
             raise RequestHumanTakeover("App restart failed repeatedly")
-
         self.handle_app_login()
         # self.ensure_no_unfinished_campaign()
-        self.config.task_delay(server_update=True)
 
     def ensure_no_unfinished_campaign(self, confirm_wait=3):
         """

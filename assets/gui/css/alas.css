@@ -302,7 +302,7 @@ pre.rich-traceback-code {
 }
 
 *[style*="--header-text--"] {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     margin: auto !important;
 }
@@ -380,6 +380,23 @@ pre.rich-traceback-code {
 
 #pywebio-scope-groups:not(:has(*)) {
     display: none;
+}
+
+[id^="pywebio-scope-group_Island"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5%
+}
+
+[id^="pywebio-scope-group_Island"] > [id*="Enable"],
+[id^="pywebio-scope-group_Island"] > [id*="Receive"] {
+    display: grid;
+    grid-column: 1 / -1;
+}
+
+[id^="pywebio-scope-group_Island"] > [id^="pywebio-scope-arg_container-"]:not([id*="Enable"]):not([id*="Receive"]) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 #pywebio-scope-navigator {
@@ -503,8 +520,7 @@ pre.rich-traceback-code {
     display: grid;
 }
 
-.bs-title-option,
-.form-check-input[id*="ch_S"] {
+.bs-title-option {
     display: none;
 }
 
@@ -560,6 +576,15 @@ pre.rich-traceback-code {
     height: 1.5rem;
     border: .2em solid currentColor;
 }
+
+/**[style*="--dashboard-value--"] {*/
+/*    font-size: 1.3rem;*/
+/*    font-weight: 400;*/
+/*    margin: 0 0 -0.2rem 0.6rem !important;*/
+/*    overflow-wrap: break-word;*/
+/*    overflow: visible;*/
+/*    border-bottom: 0;*/
+/*}*/
 
 *[style*="--dashboard-value--"] {
     font-size: 1.2rem;

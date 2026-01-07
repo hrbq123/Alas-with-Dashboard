@@ -98,7 +98,7 @@ class RichLog:
         # self._callback_thread = None
         # self._width = 80
         self.keep_bottom = True
-        self.display_dashboard = True
+        self.display_dashboard = False
         self.first_display = True
         self.last_display_time = {}
         self.dashboard_arg_group = None

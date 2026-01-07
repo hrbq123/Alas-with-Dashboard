@@ -57,20 +57,8 @@ class OSCampaignRun(OSMapOperation):
         except ActionPointLimit:
             if get_os_reset_remain() > 0:
                 self.config.task_delay(server_update=True)
-                self.config.task_call('Reward')
-                if self.config.is_task_enabled('OpsiHazard1Leveling') \
-                        and self.get_yellow_coins() > self.config.OpsiHazard1Leveling_YellowCoinPreserve:
-                    # 获取当前行动力和黄币数据用于推送
-                    current_ap = getattr(self.campaign, '_action_point_total', 0)
-                    yellow_coins = self.get_yellow_coins()
-                    
-                    # 发送推送通知
-                    self.campaign.notify_push(
-                        title="[Alas] 短猫相接 - 切换至侵蚀1",
-                        content=f"行动力耗尽，达到保留值限制\n行动力: {current_ap}\n黄币: {yellow_coins}\n切换至侵蚀1继续执行"
-                    )
-                    
-                    self.config.task_call('OpsiHazard1Leveling')
+                self.config.task_call('Reward', force_call=False)
+                self.cl1_task_call()
             else:
                 logger.info('Just less than 1 day to OpSi reset, delay 2.5 hours')
                 self.config.task_delay(minute=150, server_update=True)
