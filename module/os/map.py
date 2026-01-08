@@ -22,7 +22,7 @@ from module.os_handler.assets import AUTO_SEARCH_OS_MAP_OPTION_OFF, AUTO_SEARCH_
     AUTO_SEARCH_OS_MAP_OPTION_ON, AUTO_SEARCH_REWARD
 from module.os_handler.storage import StorageHandler
 from module.os_handler.strategic import StrategicSearchHandler
-from module.ui.assets import GOTO_MAIN
+from module.ui.assets import GOTO_MAIN, BACK_ARROW
 from module.ui.page import page_os
 
 
@@ -1038,7 +1038,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StorageHandler, StrategicSearchHandler):
                     # 验证失败,退出对话但不标记(后续可重试)
                     logger.info('验证失败,退出对话,不标记(可重试)')
                     for _ in range(5):
-                        self.device.back()
+                        self.device.click(BACK_ARROW)
                         time.sleep(0.3)
                 
                 return True
@@ -1237,7 +1237,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StorageHandler, StrategicSearchHandler):
                 # 验证失败,退出对话但不标记(后续可重试)
                 logger.info('验证失败,退出对话,不标记(可重试)')
                 for _ in range(5):
-                    self.device.back()
+                    self.device.click(BACK_ARROW)
                     time.sleep(0.3)
             if 'event' in result:
                 self._solved_map_event.add('is_scanning_device')
