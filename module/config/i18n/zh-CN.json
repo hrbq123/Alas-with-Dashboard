@@ -5,27 +5,27 @@
       "help": ""
     },
     "Farm": {
-      "name": "出击审批",
+      "name": "出击",
       "help": ""
     },
     "Event": {
-      "name": "活动审批",
+      "name": "活动",
       "help": ""
     },
     "EventDaily": {
-      "name": "活动每日审批",
+      "name": "活动-每日任务",
       "help": ""
     },
     "Reward": {
-      "name": "采购审批",
+      "name": "自动收获",
       "help": ""
     },
     "DailyMission": {
-      "name": "每日任务流程",
+      "name": "每日任务",
       "help": ""
     },
     "Opsi": {
-      "name": "大世界流程",
+      "name": "大世界",
       "help": ""
     },
     "Tool": {
@@ -99,23 +99,23 @@
       "help": "由于作战档案缺少维护，开荒功能不一定能正常使用，如果发现Alas运行异常，请手动完成开荒后使用自律寻敌功能"
     },
     "EventA": {
-      "name": "活动每日A图",
+      "name": "每日A图",
       "help": ""
     },
     "EventB": {
-      "name": "活动每日B图",
+      "name": "每日B图",
       "help": ""
     },
     "EventC": {
-      "name": "活动每日C图",
+      "name": "每日C图",
       "help": ""
     },
     "EventD": {
-      "name": "活动每日D图",
+      "name": "每日D图",
       "help": ""
     },
     "EventSp": {
-      "name": "活动每日SP图",
+      "name": "每日SP图",
       "help": ""
     },
     "RaidDaily": {
@@ -167,7 +167,7 @@
       "help": ""
     },
     "Hard": {
-      "name": "困难图",
+      "name": "主线-困难图",
       "help": ""
     },
     "Exercise": {
@@ -175,7 +175,7 @@
       "help": ""
     },
     "ShopFrequent": {
-      "name": "通用商店",
+      "name": "军火商商店",
       "help": ""
     },
     "ShopOnce": {
@@ -223,11 +223,11 @@
       "help": ""
     },
     "OpsiVoucher": {
-      "name": "兑换商店",
+      "name": "白票商店",
       "help": ""
     },
     "OpsiDaily": {
-      "name": "大世界每日",
+      "name": "大世界-每日",
       "help": ""
     },
     "OpsiObscure": {
