@@ -549,10 +549,8 @@ class OperationSiren(OSMap):
                 current_threshold = threshold
                 break
 
-        # 查询是否为首次调用
-        if hasattr(self, '_last_notified_ap_threshold'):
-        
-        
+        # 查询是否为首次调用（属性存在且不为 None 才进行比较）
+        if hasattr(self, '_last_notified_ap_threshold') and self._last_notified_ap_threshold is not None:
             # 如果跨越了阈值区间，发送推送通知
             if current_threshold != self._last_notified_ap_threshold:
                 if current_threshold is not None:
