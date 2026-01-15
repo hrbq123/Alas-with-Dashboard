@@ -1761,6 +1761,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StorageHandler, StrategicSearchHandler):
             logger.info('【塞壬Bug利用】返回侵蚀一区域')
             self.os_map_goto_globe(unpin=False)
             self.globe_goto(erosion_one_zone, types=('SAFE', 'DANGEROUS'), refresh=True)
+            self.zone_init()
             logger.info('【塞壬Bug利用】返回侵蚀一区域完成')
 
             # Increase bug count
@@ -1769,7 +1770,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StorageHandler, StrategicSearchHandler):
             count = self.config.OpsiSirenBug_SirenBug_DailyCount
             logger.info(f'Siren bug exploitation successful, daily count: {count}')
 
-            # self.run_auto_search(question=True, rescan='full', after_auto_search=True)
+            self.run_auto_search(question=True, rescan='full', after_auto_search=True)
             
             # 发送成功通知
             try:
@@ -1808,7 +1809,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StorageHandler, StrategicSearchHandler):
             try:
                 self.os_map_goto_globe(unpin=False)
                 self.globe_goto(erosion_one_zone, types=('SAFE', 'DANGEROUS'), refresh=True)
-                logger.info('异常处理：返回侵蚀一区域')
+                self.zone_init()
             except Exception as return_err:
                 logger.error(f'返回侵蚀一失败: {return_err}')
         finally:
