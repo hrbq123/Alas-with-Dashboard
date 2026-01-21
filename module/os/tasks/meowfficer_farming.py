@@ -4,6 +4,7 @@ from module.exception import RequestHumanTakeover, ScriptError
 from module.logger import logger
 from module.map.map_grids import SelectedGrids
 from module.os.map import OSMap
+from module.os_handler.action_point import ActionPointLimit
 
 
 class OpsiMeowfficerFarming(OSMap):
