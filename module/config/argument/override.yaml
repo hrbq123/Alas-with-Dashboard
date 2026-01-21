@@ -328,7 +328,7 @@ EventShop:
 Commission:
   Scheduler:
     Enable:
-      type: switch
+      type: state
       value: true
       option: [true, false]
       option_bold: [true]
@@ -343,7 +343,7 @@ Tactical:
 Research:
   Scheduler:
     Enable:
-      type: switch
+      type: state
       value: true
       option: [true, false]
       option_bold: [true]
@@ -368,7 +368,7 @@ Guild:
 Reward:
   Scheduler:
     Enable:
-      type: switch
+      type: state
       value: true
       option: [true, false]
       option_bold: [true]
