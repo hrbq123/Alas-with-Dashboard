@@ -1881,10 +1881,12 @@ class OSMap(OSFleet, Map, GlobeCamera, StorageHandler, StrategicSearchHandler):
             count_limit = self.config.OpsiSirenBug_SirenBug_DailyCountLimit
             if count_limit > 0 and count >= count_limit:
                 logger.info(f'已达到塞壬Bug自动处理阈值 ({count_limit}次)，开始自动收菜')
-                self.os_auto_search_daemon_until_combat()
-                logger.info('遇到敌舰，卡位完成')
-                self.fleet_set(1 if self.config.OpsiFleet_Fleet != 1 else 2)
+                if siren_bug_type == 'safe':
+                    self.os_auto_search_daemon_until_combat()
+                    logger.info('遇到敌舰，卡位完成')
+                    self.fleet_set(1 if self.config.OpsiFleet_Fleet != 1 else 2)
                 self.os_auto_search_run()
+                self.fleet_set(self.config.OpsiFleet_Fleet)
                 logger.info('自动收菜完成，返回正常任务流程')
                 try:
                     if hasattr(self, 'notify_push'):
