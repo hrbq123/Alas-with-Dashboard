@@ -2182,8 +2182,7 @@
       "HazardLevel": 5,
       "TargetZone": 0,
       "StayInZone": false,
-      "APPreserveUntilReset": false,
-      "OperationCoinsReturnThreshold": 30000
+      "APPreserveUntilReset": false
     },
     "OpsiFleet": {
       "Fleet": 1,
@@ -2230,7 +2229,8 @@
     },
     "OpsiScheduling": {
       "EnableSmartScheduling": false,
-      "ActionPointNotifyLevels": "500,1000,2000,3000"
+      "ActionPointNotifyLevels": "500,1000,2000,3000",
+      "OperationCoinsReturnThreshold": 30000
     },
     "Storage": {
       "Storage": {}

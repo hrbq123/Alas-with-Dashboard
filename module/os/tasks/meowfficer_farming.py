@@ -26,9 +26,9 @@ class OpsiMeowfficerFarming(OSMap):
             default=100000
         )
         
-        # Get OperationCoinsReturnThreshold
+        # Get OperationCoinsReturnThreshold from common config (OpsiScheduling)
         return_threshold_config = self.config.cross_get(
-            keys='OpsiMeowfficerFarming.OpsiMeowfficerFarming.OperationCoinsReturnThreshold',
+            keys='OpsiScheduling.OpsiScheduling.OperationCoinsReturnThreshold',
             default=None
         )
         
@@ -75,7 +75,10 @@ class OpsiMeowfficerFarming(OSMap):
                 content=f"黄币 {yellow_coins} 达到阈值 {return_threshold}\n切换回侵蚀1继续执行"
             )
             with self.config.multi_set():
-                # 禁用短猫任务的调度器，防止被重新调度
+                # 禁用所有黄币补充任务的调度器，防止被重新调度
+                self.config.cross_set(keys='OpsiObscure.Scheduler.Enable', value=False)
+                self.config.cross_set(keys='OpsiAbyssal.Scheduler.Enable', value=False)
+                self.config.cross_set(keys='OpsiStronghold.Scheduler.Enable', value=False)
                 self.config.cross_set(keys='OpsiMeowfficerFarming.Scheduler.Enable', value=False)
                 self.config.task_call('OpsiHazard1Leveling')
             self.config.task_stop()

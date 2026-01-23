@@ -1076,7 +1076,6 @@ OpsiMeowfficerFarming:
     value: 0
   StayInZone: false
   APPreserveUntilReset: false
-  OperationCoinsReturnThreshold: 30000
 OpsiHazard1Leveling:
   TargetZone:
     value: 0
@@ -1110,6 +1109,7 @@ OpsiScheduling:
   ActionPointNotifyLevels:
     value: "500,1000,2000,3000"
     valuetype: str
+  OperationCoinsReturnThreshold: 30000
 
 # =================== Island ====================
 IslandSeasonTask:
