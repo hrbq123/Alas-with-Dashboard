@@ -80,6 +80,11 @@ class Coalition(CoalitionCombat, CampaignEvent):
         return pt
 
     def check_oil(self):
+        # Skip oil check if this coalition event has no oil icon
+        if not self._coalition_has_oil_icon:
+            logger.info('Coalition event has no oil icon, skip oil check')
+            return False
+            
         limit = max(500, self.config.StopCondition_OilLimit)
         if not (self.get_oil() < limit):
             return False
