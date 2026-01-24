@@ -1118,6 +1118,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StorageHandler, StrategicSearchHandler):
                 self._solved_map_event.add('is_scanning_device')
                 return True
             
+            self.is_siren_device_confirmed = False
             self.device.click(grid)
             with self.config.temporary(STORY_ALLOW_SKIP=False):
                 result = self.wait_until_walk_stable(
@@ -1128,7 +1129,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StorageHandler, StrategicSearchHandler):
             elif 'event' in result and grid.is_logging_tower:
                 self._solved_map_event.add('is_logging_tower')
                 return True
-            elif 'event' in result and grid.is_scanning_device:
+            elif 'event' in result and (grid.is_scanning_device or self.is_siren_device_confirmed):
                 # ========== 地图检测:检测到扫描装置 ==========
                 logger.hr('检测到扫描装置,开始处理', level=2)
                 logger.info(f'[地图检测] 格子 {grid} 被识别为扫描装置 (grid.is_scanning_device=True)')
