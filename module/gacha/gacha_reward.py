@@ -10,7 +10,6 @@ from module.handler.assets import POPUP_CONFIRM, STORY_SKIP
 from module.logger import logger
 from module.ocr.ocr import Digit
 from module.retire.retirement import Retirement
-from module.log_res.log_res import LogRes
 from module.log_res import LogRes
 
 RECORD_GACHA_OPTION = ('RewardRecord', 'gacha')
