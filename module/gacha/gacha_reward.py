@@ -1,6 +1,5 @@
 from module.base.timer import Timer
-# ========== 关键修改1：删除错误的OCR_COIN导入 ==========
-# from module.campaign.campaign_status import OCR_COIN
+from module.campaign.campaign_status import OCR_COIN
 from module.combat.assets import GET_SHIP
 from module.exception import ScriptError
 from module.gacha.assets import *
@@ -9,12 +8,10 @@ from module.handler.assets import POPUP_CONFIRM, STORY_SKIP
 from module.logger import logger
 from module.ocr.ocr import Digit
 from module.retire.retirement import Retirement
-from module.log_res.log_res import LogRes
+from module.log_res import LogRes
 
 RECORD_GACHA_OPTION = ('RewardRecord', 'gacha')
 RECORD_GACHA_SINCE = (0,)
-# ========== 关键修改2：新增OCR_COIN定义（金币识别器） ==========
-OCR_COIN = Digit(BUILD_COIN_COUNT, letter=(255, 247, 247), threshold=64)
 OCR_BUILD_CUBE_COUNT = Digit(BUILD_CUBE_COUNT, letter=(255, 247, 247), threshold=64)
 OCR_BUILD_TICKET_COUNT = Digit(BUILD_TICKET_COUNT, letter=(255, 247, 247), threshold=64)
 OCR_BUILD_SUBMIT_COUNT = Digit(BUILD_SUBMIT_COUNT, letter=(255, 247, 247), threshold=64)
@@ -328,9 +325,6 @@ class RewardGacha(GachaUI, Retirement):
             buy[0] = self.build_ticket_count
             # Calculate rolls allowed based on configurations and resources
             buy[1] = self.gacha_calculate(self.config.Gacha_Amount - self.build_ticket_count, gold_cost, cube_cost)
-        else:
-            LogRes(self.config).Cube = self.build_cube_count
-            self.config.update()
 
         # Submit 'buy_count' and execute if capable
         # Cannot use handle_popup_confirm, this window
