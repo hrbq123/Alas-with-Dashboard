@@ -1,0 +1,37 @@
+name: Sync from Upstream
+
+on:
+  schedule:
+    - cron: '30 19 * * *'  # 每天北京时间 3:30 执行
+    - cron: '30 23 * * *'
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 获取全部历史
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Sync from upstream
+        run: |
+          # 确保 upstream 存在
+          git remote remove upstream || true
+          git remote add upstream https://github.com/LmeSzinc/AzurLaneAutoScript.git
+          
+          # 拉取最新代码
+          git fetch upstream
+          git checkout --track origin/master || git checkout master
+          
+          # 尝试合并
+          git merge --no-edit upstream/master
+          
+          # 推送更改
+          git push origin master
