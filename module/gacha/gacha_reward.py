@@ -1,5 +1,6 @@
 from module.base.timer import Timer
-from module.campaign.campaign_status import OCR_COIN
+# ========== 关键修改1：删除错误的OCR_COIN导入 ==========
+# from module.campaign.campaign_status import OCR_COIN
 from module.combat.assets import GET_SHIP
 from module.exception import ScriptError
 from module.gacha.assets import *
@@ -12,6 +13,8 @@ from module.log_res.log_res import LogRes
 
 RECORD_GACHA_OPTION = ('RewardRecord', 'gacha')
 RECORD_GACHA_SINCE = (0,)
+# ========== 关键修改2：新增OCR_COIN定义（金币识别器） ==========
+OCR_COIN = Digit(BUILD_COIN_COUNT, letter=(255, 247, 247), threshold=64)
 OCR_BUILD_CUBE_COUNT = Digit(BUILD_CUBE_COUNT, letter=(255, 247, 247), threshold=64)
 OCR_BUILD_TICKET_COUNT = Digit(BUILD_TICKET_COUNT, letter=(255, 247, 247), threshold=64)
 OCR_BUILD_SUBMIT_COUNT = Digit(BUILD_SUBMIT_COUNT, letter=(255, 247, 247), threshold=64)
