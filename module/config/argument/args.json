@@ -1866,22 +1866,24 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ],
         "option_cn": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_en": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_jp": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_tw": [
           "event_20260625_cn"
         ],
         "option_bold": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ]
       },
       "Mode": {
@@ -2271,22 +2273,24 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ],
         "option_cn": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_en": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_jp": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_tw": [
           "event_20260625_cn"
         ],
         "option_bold": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ]
       },
       "Mode": {
@@ -2666,22 +2670,24 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ],
         "option_cn": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_en": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_jp": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_tw": [
           "event_20260625_cn"
         ],
         "option_bold": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ]
       },
       "Mode": {
@@ -3477,24 +3483,22 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "coalition_20230323",
-          "coalition_20260122"
+          "coalition_20260723"
         ],
         "option_cn": [
-          "coalition_20260122"
+          "coalition_20260723"
         ],
         "option_en": [
-          "coalition_20260122"
+          "coalition_20260723"
         ],
         "option_jp": [
-          "coalition_20260122"
+          "coalition_20260723"
         ],
         "option_tw": [
-          "coalition_20230323"
+          "coalition_20260723"
         ],
         "option_bold": [
-          "coalition_20230323",
-          "coalition_20260122"
+          "coalition_20260723"
         ]
       },
       "Mode": {
@@ -3535,12 +3539,12 @@
     "Coalition": {
       "Mode": {
         "type": "select",
-        "value": "tc3",
+        "value": "hard",
         "option": [
-          "tc1",
-          "tc2",
-          "tc3",
-          "ex"
+          "easy",
+          "normal",
+          "hard",
+          "sp"
         ]
       },
       "Fleet": {
@@ -3679,7 +3683,7 @@
       }
     }
   },
-  "MaritimeEscort": {
+  "EventShop": {
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
@@ -3696,7 +3700,7 @@
       },
       "Command": {
         "type": "input",
-        "value": "MaritimeEscort",
+        "value": "EventShop",
         "display": "hide"
       },
       "SuccessInterval": {
@@ -3715,10 +3719,31 @@
         "display": "hide"
       }
     },
-    "MaritimeEscort": {
-      "Enable": {
+    "EventShop": {
+      "UnlockSSRShip": {
         "type": "checkbox",
         "value": true
+      },
+      "BuyURShip": {
+        "type": "select",
+        "value": 2,
+        "option": [
+          0,
+          1,
+          2
+        ]
+      },
+      "PresetFilter": {
+        "type": "select",
+        "value": "all",
+        "option": [
+          "all",
+          "custom"
+        ]
+      },
+      "CustomFilter": {
+        "type": "textarea",
+        "value": "EquipUR > EquipSSR > Cube > GachaTicket\n> Array > Chip > CatT3 \n> Meta > SkinBox\n> Oil > Coin > Medal > ExpBookT1 > FoodT1\n> DR > PR\n> AugmentCore > AugmentEnhanceT2 > AugmentChangeT2 > AugmentChangeT1\n> CatT2 > CatT1 > PlateGeneralT3 > PlateT3 > BoxT4\n> ShipSSR"
       }
     },
     "Storage": {
@@ -4413,22 +4438,24 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ],
         "option_cn": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_en": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_jp": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_tw": [
           "event_20260625_cn"
         ],
         "option_bold": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ]
       },
       "Mode": {
@@ -4825,22 +4852,24 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ],
         "option_cn": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_en": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_jp": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_tw": [
           "event_20260625_cn"
         ],
         "option_bold": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ]
       },
       "Mode": {
@@ -5237,22 +5266,24 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ],
         "option_cn": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_en": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_jp": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_tw": [
           "event_20260625_cn"
         ],
         "option_bold": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ]
       },
       "Mode": {
@@ -5649,22 +5680,24 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ],
         "option_cn": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_en": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_jp": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_tw": [
           "event_20260625_cn"
         ],
         "option_bold": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ]
       },
       "Mode": {
@@ -6051,22 +6084,24 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ],
         "option_cn": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_en": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_jp": [
-          "event_20260625_cn"
+          "event_20260813_cn"
         ],
         "option_tw": [
           "event_20260625_cn"
         ],
         "option_bold": [
-          "event_20260625_cn"
+          "event_20260625_cn",
+          "event_20260813_cn"
         ]
       },
       "Mode": {
@@ -6687,24 +6722,22 @@
         "type": "select",
         "value": "campaign_main",
         "option": [
-          "coalition_20230323",
-          "coalition_20260122"
+          "coalition_20260723"
         ],
         "option_cn": [
-          "coalition_20260122"
+          "coalition_20260723"
         ],
         "option_en": [
-          "coalition_20260122"
+          "coalition_20260723"
         ],
         "option_jp": [
-          "coalition_20260122"
+          "coalition_20260723"
         ],
         "option_tw": [
-          "coalition_20230323"
+          "coalition_20260723"
         ],
         "option_bold": [
-          "coalition_20230323",
-          "coalition_20260122"
+          "coalition_20260723"
         ]
       },
       "Mode": {
@@ -6747,11 +6780,10 @@
         "type": "select",
         "value": "sp",
         "option": [
-          "tc1",
-          "tc2",
-          "tc3",
-          "sp",
-          "ex"
+          "easy",
+          "normal",
+          "hard",
+          "sp"
         ],
         "display": "hide"
       },
@@ -8932,7 +8964,7 @@
       },
       "CustomFilter": {
         "type": "textarea",
-        "value": "LoggerAbyssalT6 > LoggerAbyssalT5 > LoggerObscure > LoggerAbyssalT4 > ActionPoint > PurpleCoins\n> GearDesignPlanT3 > PlateRandomT4 > DevelopmentMaterialT3 > GearDesignPlanT2 > GearPart\n> OrdnanceTestingReportT3 > OrdnanceTestingReportT2 > DevelopmentMaterialT2 > OrdnanceTestingReportT1\n> METARedBook > CrystallizedHeatResistantSteel > NanoceramicAlloy > NeuroplasticProstheticArm > SupercavitationGenerator"
+        "value": "LoggerAbyssalT6 > LoggerAbyssalT5 > LoggerAbyssalT4 > LoggerObscureT6 > LoggerObscureT5 > LoggerObscureT4 > LoggerObscureT3 > ActionPoint > PurpleCoins\n> GearDesignPlanT3 > PlateRandomT4 > DevelopmentMaterialT3 > GearDesignPlanT2 > GearPart\n> OrdnanceTestingReportT3 > OrdnanceTestingReportT2 > DevelopmentMaterialT2 > OrdnanceTestingReportT1\n> METARedBook > CrystallizedHeatResistantSteel > NanoceramicAlloy > NeuroplasticProstheticArm > SupercavitationGenerator"
       }
     },
     "Storage": {
@@ -9577,6 +9609,490 @@
       }
     }
   },
+  "IslandProduction": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "IslandProduction",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "IslandProduction": {
+      "HardFloorItems": {
+        "type": "textarea",
+        "value": "{}"
+      },
+      "ReserveItems": {
+        "type": "textarea",
+        "value": "{}"
+      },
+      "DailyBufferItems": {
+        "type": "textarea",
+        "value": "{}"
+      },
+      "IdleAccumulatingItems": {
+        "type": "textarea",
+        "value": "{}"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "IslandOrder": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "IslandOrder",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "IslandOrder": {
+      "StuckSeasonOrderId": {
+        "type": "input",
+        "value": 0
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "IslandFreebie": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "IslandFreebie",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "IslandFreebie": {
+      "Share": {
+        "type": "checkbox",
+        "value": true
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "IslandCollect": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "IslandCollect",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "03:00, 18:00",
+        "display": "hide"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "IslandSeasonTask": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "IslandSeasonTask",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "IslandSeasonTask": {
+      "TaskTarget": {
+        "type": "textarea",
+        "value": "{}"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "IslandBusiness": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "IslandBusiness",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "IslandRestaurant": {
+      "KoiGrade": {
+        "type": "select",
+        "value": "bronze",
+        "option": [
+          "bronze",
+          "silver",
+          "gold",
+          "diamond"
+        ]
+      },
+      "KoiWaitress1": {
+        "type": "select",
+        "value": "any",
+        "option": [
+          "none",
+          "any",
+          "Chao_Ho",
+          "Chang_Feng"
+        ]
+      },
+      "KoiWaitress2": {
+        "type": "select",
+        "value": "none",
+        "option": [
+          "none",
+          "any",
+          "Chao_Ho",
+          "Chang_Feng"
+        ]
+      },
+      "KoiMenu": {
+        "type": "textarea",
+        "value": "{}"
+      },
+      "BearGrade": {
+        "type": "select",
+        "value": "bronze",
+        "option": [
+          "bronze",
+          "silver",
+          "gold",
+          "diamond"
+        ]
+      },
+      "BearWaitress1": {
+        "type": "select",
+        "value": "any",
+        "option": [
+          "none",
+          "any",
+          "Cheshire",
+          "Chang_Feng"
+        ]
+      },
+      "BearWaitress2": {
+        "type": "select",
+        "value": "none",
+        "option": [
+          "none",
+          "any",
+          "Cheshire",
+          "Chang_Feng"
+        ]
+      },
+      "BearMenu": {
+        "type": "textarea",
+        "value": "{}"
+      },
+      "EateryGrade": {
+        "type": "select",
+        "value": "bronze",
+        "option": [
+          "bronze",
+          "silver",
+          "gold",
+          "diamond"
+        ]
+      },
+      "EateryWaitress1": {
+        "type": "select",
+        "value": "any",
+        "option": [
+          "none",
+          "any",
+          "Helena",
+          "Prinz_Eugen",
+          "Chang_Feng"
+        ]
+      },
+      "EateryWaitress2": {
+        "type": "select",
+        "value": "none",
+        "option": [
+          "none",
+          "any",
+          "Helena",
+          "Prinz_Eugen",
+          "Chang_Feng"
+        ]
+      },
+      "EateryMenu": {
+        "type": "textarea",
+        "value": "{}"
+      },
+      "GrillGrade": {
+        "type": "select",
+        "value": "bronze",
+        "option": [
+          "bronze",
+          "silver",
+          "gold",
+          "diamond"
+        ]
+      },
+      "GrillWaitress1": {
+        "type": "select",
+        "value": "any",
+        "option": [
+          "none",
+          "any",
+          "August_von_Parseval",
+          "Prinz_Eugen",
+          "Chang_Feng"
+        ]
+      },
+      "GrillWaitress2": {
+        "type": "select",
+        "value": "none",
+        "option": [
+          "none",
+          "any",
+          "August_von_Parseval",
+          "Prinz_Eugen",
+          "Chang_Feng"
+        ]
+      },
+      "GrillMenu": {
+        "type": "textarea",
+        "value": "{}"
+      },
+      "CafeGrade": {
+        "type": "select",
+        "value": "bronze",
+        "option": [
+          "bronze",
+          "silver",
+          "gold",
+          "diamond"
+        ]
+      },
+      "CafeWaitress1": {
+        "type": "select",
+        "value": "any",
+        "option": [
+          "none",
+          "any",
+          "Cheshire",
+          "Belfast",
+          "Chang_Feng"
+        ]
+      },
+      "CafeWaitress2": {
+        "type": "select",
+        "value": "none",
+        "option": [
+          "none",
+          "any",
+          "Cheshire",
+          "Belfast",
+          "Chang_Feng"
+        ]
+      },
+      "CafeMenu": {
+        "type": "textarea",
+        "value": "{}"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
   "Daemon": {
     "Daemon": {
       "EnterMap": {
@@ -9623,6 +10139,57 @@
         ],
         "option_bold": [
           true
+        ]
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "IslandProductionPlanner": {
+    "IslandProductionPlanner": {
+      "RescanIslandTechnology": {
+        "type": "checkbox",
+        "value": false
+      },
+      "DailyProfitLowerLimit": {
+        "type": "input",
+        "value": 50000
+      },
+      "DailyBufferSafetyMargin": {
+        "type": "input",
+        "value": 0
+      },
+      "FieldsEfficiency": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          0.04,
+          0.12
+        ]
+      },
+      "OrchardEfficiency": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          0.04,
+          0.12
+        ]
+      },
+      "NurseryEfficiency": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          0.04,
+          0.12
         ]
       }
     },
