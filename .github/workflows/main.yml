@@ -1,0 +1,51 @@
+name: Sync from Upstream
+
+on:
+  schedule:
+    - cron: '30 19 * * *'  # 每天北京时间 3:30 执行
+    - cron: '30 23 * * *'
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 获取全部历史
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Sync from upstream
+        run: |
+          # 确保 upstream 存在
+          git remote remove upstream 2>/dev/null || true
+          git remote add upstream https://github.com/hrbq123/Alas-with-Dashboard.git
+          
+          # 拉取最新代码
+          git fetch upstream
+          
+          # 确保在正确的分支
+          git checkout master 2>/dev/null || git checkout -b master
+          
+          # 合并上游更改
+          git merge --no-edit upstream/master
+          
+          # 检查是否有工作流程文件，如果有则移除
+          if [ -f ".github/workflows/main.yml" ]; then
+            echo "Removing workflow file to avoid permission issues"
+            git rm -rf .github/workflows/main.yml 2>/dev/null || true
+            # 如果工作流程目录为空，也删除目录
+            if [ -d ".github/workflows" ] && [ -z "$(ls -A .github/workflows/)" ]; then
+              git rm -rf .github/workflows 2>/dev/null || true
+            fi
+            # 提交移除工作流程文件的更改
+            git commit -m "Remove workflow files to avoid permission issues" || echo "No workflow files to remove"
+          fi
+          
+          # 推送更改
+          git push origin master
